@@ -4,7 +4,7 @@ public class Questao3 {
 
     public static void main(String[] args) {
         Stream input = new StringStream("aAbBABacafe");
-        System.out.println(Questao3.firstChar(input));
+        System.out.println("Primeira vogal que safisfaça os critérios => "+ Questao3.firstChar(input));
     }
 
     public static char firstChar(Stream input) {
@@ -22,19 +22,21 @@ public class Questao3 {
 
             //Verifica se o caractere atual é vogal
             if (verificaVogal(caractereAtual)) {
-                //Verifica se o caracter anterior é uma consoante e o anterior a ele uma vogal
-                if ((caracteresAnteriores[0] != ' ' && !verificaVogal(caracteresAnteriores[0]))
-                        && (caracteresAnteriores[1] != ' ' && verificaVogal(caracteresAnteriores[1]))) {
 
-                    indice = procuraIndice(caractereAtual, vogaisEncontradas);
+                indice = procuraIndice(caractereAtual, vogaisEncontradas);
 
-                    if (indice >= 0) {
-                        quantidadeCharsRepetidos[indice]++;
-                    } else {
+                if (indice >= 0) {
+                    
+                    quantidadeCharsRepetidos[indice]++;
+                } else {
+                    //Verifica se o caracter anterior é uma consoante e o anterior a ele uma vogal
+                    if ((caracteresAnteriores[0] != ' ' && !verificaVogal(caracteresAnteriores[0]))
+                            && (caracteresAnteriores[1] != ' ' && verificaVogal(caracteresAnteriores[1]))) {
                         vogaisEncontradas[controle] = caractereAtual;
+                        
                         quantidadeCharsRepetidos[controle]++;
                         controle++;
-                    }
+                    }                    
                 }
             }
 
@@ -48,9 +50,10 @@ public class Questao3 {
         //Procura o primeiro nao repetido
         int primeiroIndice = -1;
         for (int i = 0; i < quantidadeCharsRepetidos.length; i++) {
-            System.out.println(quantidadeCharsRepetidos[i]);
+            //System.out.println(quantidadeCharsRepetidos[i]);
             if (quantidadeCharsRepetidos[i] == 1) {
                 primeiroIndice = i;
+                break;
             }
         }
 
